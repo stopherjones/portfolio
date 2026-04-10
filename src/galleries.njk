@@ -1,0 +1,52 @@
+---
+pagination:
+  data: photos
+  size: 1
+  alias: gallery
+permalink: "/{{ gallery.slug }}/index.html"
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ gallery.name | capitalize }} | Photography Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  
+  <link rel="stylesheet" href="/assets/photoswipe/photoswipe.css">
+</head>
+<body>
+
+    {% include "navbar.njk" %}
+
+  <main>
+    <div class="gallery" id="gallery-container">
+      {% for imgPath in gallery.images %}
+        {# This calls the async shortcode we defined in .eleventy.js #}
+        {% galleryImage imgPath, "Photo from " + gallery.name %}
+      {% endfor %}
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 | Built with 11ty</p>
+  </footer>
+
+  <script type="module">
+    import PhotoSwipeLightbox from '/assets/photoswipe/photoswipe-lightbox.esm.js';
+    
+    const lightbox = new PhotoSwipeLightbox({
+      gallery: '#gallery-container',
+      children: 'a',
+      // The module must be imported dynamically
+      pswpModule: () => import('/assets/photoswipe/photoswipe.esm.js')
+    });
+    
+    lightbox.init();
+  </script>
+
+  {% include "footer.njk" %}
+
+</body>
+</html>

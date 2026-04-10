@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galleries | Photography Portfolio</title>
+  
+  <link rel="stylesheet" href="/assets/style.css">
+  
+  <link rel="stylesheet" href="/assets/photoswipe/photoswipe.css">
+</head>
+<body>
+
+  <header>
+    <nav>
+      <a href="/">← All Galleries</a>
+    </nav>
+    <h1>Galleries</h1>
+  </header>
+
+  <main>
+    <div class="gallery" id="gallery-container">
+      
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 | Built with 11ty</p>
+  </footer>
+
+  <script type="module">
+    import PhotoSwipeLightbox from '/assets/photoswipe/photoswipe-lightbox.esm.js';
+    
+    const lightbox = new PhotoSwipeLightbox({
+      gallery: '#gallery-container',
+      children: 'a',
+      // The module must be imported dynamically
+      pswpModule: () => import('/assets/photoswipe/photoswipe.esm.js')
+    });
+    
+    lightbox.init();
+  </script>
+
+</body>
+</html>

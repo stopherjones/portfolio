@@ -1,0 +1,31 @@
+<nav class="main-nav">
+  <div class="nav-container">
+    <a href="/" class="nav-brand">
+      <img src="/img/site/logo.png" alt="Logo" class="nav-logo">
+      <span>Christopher Jones Portfolio</span>
+    </a>
+
+    <div class="nav-menu">
+      <button class="menu-button" aria-haspopup="true">Menu ▾</button>
+      <div class="menu-content">
+        <div class="menu-section">
+          <span class="menu-label">Galleries</span>
+          {% for gallery in photos %}
+            {% if not gallery.isPersonal %}
+              <a href="/{{ gallery.slug }}/">{{ gallery.name | capitalize }}</a>
+            {% endif %}
+          {% endfor %}
+        </div>
+        <hr>
+        <div class="menu-section">
+          <span class="menu-label">Personal Projects</span>
+          {% for gallery in photos %}
+            {% if gallery.isPersonal %}
+              <a href="/{{ gallery.slug }}/">{{ gallery.name | capitalize }}</a>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

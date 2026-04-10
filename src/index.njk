@@ -1,0 +1,57 @@
+---
+title: My Photography Portfolio
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+  {% include "navbar.njk" %}
+
+  <main>
+    <div class="gallery-grid"> {# Changed class to 'gallery-grid' to match the CSS #}
+      
+      {# 1. Show only the non-personal galleries #}
+      {% for gallery in photos %}
+        {% if not gallery.isPersonal %}
+          <a href="/{{ gallery.slug }}/" class="gallery-card">
+            <div class="card-image">
+              {% if gallery.cover %}
+                <img src="{{ gallery.cover }}" alt="{{ gallery.name }} Cover">
+              {% else %}
+                <div class="placeholder-bg"></div>
+              {% endif %}
+            </div>
+            <div class="card-overlay">
+              <h2>{{ gallery.name }}</h2>
+            </div>
+          </a>
+        {% endif %}
+      {% endfor %}
+
+      {# 2. The Manual "Personal Projects" Box #}
+      {# You can manually set a cover for this one in the style below or use a static img #}
+      <a href="/personal-projects/" class="gallery-card personal-highlight">
+         <div class="card-image">
+            {# Replace this with a specific path to an image you want as the 'Personal' cover #}
+            <img src="/img/site/personal-cover.jpg" alt="Personal Projects">
+         </div>
+         <div class="card-overlay">
+            <h2>Personal Projects</h2>
+            <p>Explorations & Series</p>
+         </div>
+      </a>
+
+    </div>
+  </main>
+
+  {% include "footer.njk" %}
+
+</body>
+</html>
