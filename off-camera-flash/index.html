@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Off camera flash | Photography Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/style.css">
-  <link rel="stylesheet" href="/assets/photoswipe/photoswipe.css">
+  <link rel="stylesheet" href="/portfolio/assets/style.css">
+  <link rel="stylesheet" href="/portfolio/assets/photoswipe/photoswipe.css">
 </head>
 <body>
 
     <nav class="main-nav">
   <div class="nav-container">
-    <a href="/" class="nav-brand">
-      <img src="/img/site/logo.png" alt="Logo" class="nav-logo">
+    <a href="/portfolio/" class="nav-brand">
+      <img src="/portfolio/img/site/logo.png" alt="Logo" class="nav-logo">
       <span>Christopher Jones Portfolio</span>
     </a>
 
@@ -24,15 +24,11 @@
           <span class="menu-label">Galleries</span>
           
             
-              <a href="/arts/">Arts</a>
+              <a href="/portfolio/arts/">Arts</a>
             
           
             
-              <a href="/commercial/">Commercial</a>
-            
-          
-            
-          
+              <a href="/portfolio/commercial/">Commercial</a>
             
           
             
@@ -42,15 +38,19 @@
             
           
             
-              <a href="/events/">Events</a>
+          
             
           
             
-              <a href="/sports/">Sports</a>
+              <a href="/portfolio/events/">Events</a>
             
           
             
-              <a href="/urban/">Urban</a>
+              <a href="/portfolio/sports/">Sports</a>
+            
+          
+            
+              <a href="/portfolio/urban/">Urban</a>
             
           
         </div>
@@ -63,23 +63,23 @@
             
           
             
-              <a href="/londonunderground/">London underground</a>
+              <a href="/portfolio/londonunderground/">London underground</a>
             
           
             
-              <a href="/monopoly/">London monopoly</a>
+              <a href="/portfolio/monopoly/">London monopoly</a>
             
           
             
-              <a href="/drone/">Drone</a>
+              <a href="/portfolio/drone/">Drone</a>
             
           
             
-              <a href="/off-camera-flash/">Off camera flash</a>
+              <a href="/portfolio/off-camera-flash/">Off camera flash</a>
             
           
             
-              <a href="/drawings/">Drawings</a>
+              <a href="/portfolio/drawings/">Drawings</a>
             
           
             
@@ -99,12 +99,12 @@
   
     
     
-      <a href="/img/DSC02690-1600w.webp" 
+      <a href="/portfolio/img/DSC02690-1600w.webp" 
                  data-pswp-width="1600" 
                  data-pswp-height="1066" 
                  target="_blank"
                  style="flex-grow: 1.5000; flex-basis: 300px">
-                <img src="/img/DSC02690-600w.webp" 
+                <img src="/portfolio/img/DSC02690-600w.webp" 
                      alt="Photo from Off Camera Flash" 
                      loading="lazy" 
                      style="width:100%; height:100%; object-fit:cover;">
@@ -113,12 +113,12 @@
   
     
     
-      <a href="/img/DSC02978-1600w.webp" 
+      <a href="/portfolio/img/DSC02978-1600w.webp" 
                  data-pswp-width="1600" 
                  data-pswp-height="1001" 
                  target="_blank"
                  style="flex-grow: 1.6000; flex-basis: 320px">
-                <img src="/img/DSC02978-600w.webp" 
+                <img src="/portfolio/img/DSC02978-600w.webp" 
                      alt="Photo from Off Camera Flash" 
                      loading="lazy" 
                      style="width:100%; height:100%; object-fit:cover;">
@@ -127,12 +127,12 @@
   
     
     
-      <a href="/img/DSC03050-1600w.webp" 
+      <a href="/portfolio/img/DSC03050-1600w.webp" 
                  data-pswp-width="1600" 
                  data-pswp-height="1067" 
                  target="_blank"
                  style="flex-grow: 1.5000; flex-basis: 300px">
-                <img src="/img/DSC03050-600w.webp" 
+                <img src="/portfolio/img/DSC03050-600w.webp" 
                      alt="Photo from Off Camera Flash" 
                      loading="lazy" 
                      style="width:100%; height:100%; object-fit:cover;">
@@ -141,12 +141,12 @@
   
     
     
-      <a href="/img/DSC03156-1600w.webp" 
+      <a href="/portfolio/img/DSC03156-1600w.webp" 
                  data-pswp-width="1600" 
                  data-pswp-height="1066" 
                  target="_blank"
                  style="flex-grow: 1.5000; flex-basis: 300px">
-                <img src="/img/DSC03156-600w.webp" 
+                <img src="/portfolio/img/DSC03156-600w.webp" 
                      alt="Photo from Off Camera Flash" 
                      loading="lazy" 
                      style="width:100%; height:100%; object-fit:cover;">
@@ -155,12 +155,12 @@
   
     
     
-      <a href="/img/DSC05614-1600w.webp" 
+      <a href="/portfolio/img/DSC05614-1600w.webp" 
                  data-pswp-width="1600" 
                  data-pswp-height="1066" 
                  target="_blank"
                  style="flex-grow: 1.5038; flex-basis: 300.76px">
-                <img src="/img/DSC05614-600w.webp" 
+                <img src="/portfolio/img/DSC05614-600w.webp" 
                      alt="Photo from Off Camera Flash" 
                      loading="lazy" 
                      style="width:100%; height:100%; object-fit:cover;">
@@ -171,11 +171,11 @@
 </main>
 
 <script type="module">
-  import PhotoSwipeLightbox from '/assets/photoswipe/photoswipe-lightbox.esm.js';
+  import PhotoSwipeLightbox from '/portfolio/assets/photoswipe/photoswipe-lightbox.esm.js';
   const lightbox = new PhotoSwipeLightbox({
     gallery: '#gallery-container',
     children: 'a', // This tells PhotoSwipe to navigate between all <a> tags found here 
-    pswpModule: () => import('/assets/photoswipe/photoswipe.esm.js')
+    pswpModule: () => import('/portfolio/assets/photoswipe/photoswipe.esm.js')
   });
   lightbox.init(); // [cite: 5]
 </script>
@@ -184,14 +184,14 @@
   <div class="footer-container">
     <div class="footer-spacer"></div>
     <div class="footer-logo-wrap">
-      <img src="/img/site/logo.png" alt="Logo" class="footer-logo">
+      <img src="/portfolio/img/site/logo.png" alt="Logo" class="footer-logo">
     </div>
     <div class="footer-spacer"></div>
   </div>
 
   <div class="footer-edge-right">
-  <a href="/cookies/">
-    <img src="/img/site/cookie_footer_v2.png" alt="Cookie Policy" class="cookie-icon">
+  <a href="/portfolio/cookies/">
+    <img src="/portfolio/img/site/cookie_footer_v2.png" alt="Cookie Policy" class="cookie-icon">
   </a>
 </div>
 </footer>
