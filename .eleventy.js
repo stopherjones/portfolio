@@ -56,8 +56,8 @@ module.exports = function (eleventyConfig) {
         urlPath: imageUrlPath,
         filenameFormat: function (id, src, width, format) {
           const extension = path.extname(src);
-          const name = path.basename(src, extension);
-          return `${name}-${width}w.${format}`;
+          const relativePath = path.relative(process.cwd(), src).replace(/[/\\]/g, '-').replace(/\s+/g, '-');
+          return `${relativePath}-${width}w.${format}`;
         }
       });
 
@@ -101,8 +101,8 @@ module.exports = function (eleventyConfig) {
         urlPath: imageUrlPath,
         filenameFormat: function (id, src, width, format) {
           const extension = path.extname(src);
-          const name = path.basename(src, extension);
-          return `${name}-${width}w.${format}`;
+          const relativePath = path.relative(process.cwd(), src).replace(/[/\\]/g, '-').replace(/\s+/g, '-');
+          return `${relativePath}-${width}w.${format}`;
         }
       });
 

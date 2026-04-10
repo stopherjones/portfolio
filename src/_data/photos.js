@@ -49,8 +49,9 @@ module.exports = function() {
                  : null
         };
       }),
-  cover: coverFile ? `img/${folder}/${coverFile}`.replace(/\\/g, '/') : null,
-  isPersonal: personalSlugs.includes(slug)
+      cover: coverFile ? `img/${folder}/${coverFile}`.replace(/\\/g, '/') : null,
+      coverSrc: coverFile ? path.join(galleryDir, folder, coverFile) : null,
+      isPersonal: personalSlugs.includes(slug)
 };
   }).sort((a, b) => {
     if (a.isPersonal && b.isPersonal) {

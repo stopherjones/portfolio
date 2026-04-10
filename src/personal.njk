@@ -21,8 +21,8 @@ permalink: "/personal-projects/index.html"
       {% if gallery.isPersonal %}
         <a href="{{ pathPrefix }}/{{ gallery.slug }}/" class="gallery-card">
           <div class="card-image">
-            {% if gallery.cover %}
-              {% coverImage gallery.cover, gallery.name + ' Cover', 480 %}
+            {% if gallery.coverSrc %}
+              {% coverImage gallery.coverSrc, gallery.name + ' Cover', 480 %}
             {% else %}
               <div class="placeholder-bg" style="background: #333; height: 100%;"></div>
             {% endif %}
