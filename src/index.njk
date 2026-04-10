@@ -8,7 +8,7 @@ title: My Photography Portfolio
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ title }}</title>
   <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="{{ pathPrefix }}/assets/style.css">
 </head>
 <body>
 
@@ -20,10 +20,10 @@ title: My Photography Portfolio
       {# 1. Show only the non-personal galleries #}
       {% for gallery in photos %}
         {% if not gallery.isPersonal %}
-          <a href="/{{ gallery.slug }}/" class="gallery-card">
+          <a href="{{ pathPrefix }}/{{ gallery.slug }}/" class="gallery-card">
             <div class="card-image">
               {% if gallery.cover %}
-                <img src="{{ gallery.cover }}" alt="{{ gallery.name }} Cover">
+                <img src="{{ pathPrefix }}/{{ gallery.cover }}" alt="{{ gallery.name }} Cover">
               {% else %}
                 <div class="placeholder-bg"></div>
               {% endif %}
@@ -37,9 +37,9 @@ title: My Photography Portfolio
 
       {# 2. The Manual "Personal Projects" Box #}
       {# You can manually set a cover for this one in the style below or use a static img #}
-      <a href="/personal-projects/" class="gallery-card personal-highlight">
+      <a href="{{ pathPrefix }}/personal-projects/" class="gallery-card personal-highlight">
          <div class="card-image">
-            <img src="/img/site/personal-cover.jpg" alt="York Minster">
+            <img src="{{ pathPrefix }}/img/site/personal-cover.jpg" alt="York Minster">
          </div>
          <div class="card-overlay">
             <h2>Personal Projects</h2>

@@ -4,6 +4,10 @@ const path = require("path");
 
 module.exports = function (eleventyConfig) {
   
+  const pathPrefix = (process.env.ELEVENTY_PATH_PREFIX || "").replace(/\/$/, "");
+  eleventyConfig.addGlobalData("pathPrefix", pathPrefix);
+  const imageUrlPath = pathPrefix ? `${pathPrefix}/img/` : "/img/";
+
   // --- 1. ASSET MANAGEMENT ---
   
   // Copy CSS and custom JS
@@ -49,7 +53,7 @@ module.exports = function (eleventyConfig) {
         widths: [600, 1600],
         formats: ["webp"],
         outputDir: "./public/img/",
-        urlPath: "/img/",
+        urlPath: imageUrlPath,
         filenameFormat: function (id, src, width, format) {
           const extension = path.extname(src);
           const name = path.basename(src, extension);

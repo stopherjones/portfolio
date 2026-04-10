@@ -29,6 +29,8 @@ jobs:
 
       - name: Build site with Eleventy
         run: npm run build
+        env:
+          ELEVENTY_PATH_PREFIX: "/portfolio"
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4

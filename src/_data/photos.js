@@ -49,7 +49,7 @@ module.exports = function() {
                  : null
         };
       }),
-  cover: coverFile ? `/img/${folder}/${coverFile}`.replace(/\\/g, '/') : null,
+  cover: coverFile ? `img/${folder}/${coverFile}`.replace(/\\/g, '/') : null,
   isPersonal: personalSlugs.includes(slug)
 };
   }).sort((a, b) => {

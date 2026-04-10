@@ -12,8 +12,8 @@ permalink: "/{{ gallery.slug }}/index.html"
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ gallery.name | capitalize }} | Photography Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/style.css">
-  <link rel="stylesheet" href="/assets/photoswipe/photoswipe.css">
+  <link rel="stylesheet" href="{{ pathPrefix }}/assets/style.css">
+  <link rel="stylesheet" href="{{ pathPrefix }}/assets/photoswipe/photoswipe.css">
 </head>
 <body>
 
@@ -31,11 +31,11 @@ permalink: "/{{ gallery.slug }}/index.html"
 </main>
 
 <script type="module">
-  import PhotoSwipeLightbox from '/assets/photoswipe/photoswipe-lightbox.esm.js';
+  import PhotoSwipeLightbox from '{{ pathPrefix }}/assets/photoswipe/photoswipe-lightbox.esm.js';
   const lightbox = new PhotoSwipeLightbox({
     gallery: '#gallery-container',
     children: 'a', // This tells PhotoSwipe to navigate between all <a> tags found here 
-    pswpModule: () => import('/assets/photoswipe/photoswipe.esm.js')
+    pswpModule: () => import('{{ pathPrefix }}/assets/photoswipe/photoswipe.esm.js')
   });
   lightbox.init(); // [cite: 5]
 </script>
