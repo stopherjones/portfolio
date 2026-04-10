@@ -1,3 +1,4 @@
+const fs = require("fs");
 const Image = require("@11ty/eleventy-img");
 const path = require("path");
 
@@ -21,10 +22,20 @@ module.exports = function (eleventyConfig) {
     "src/images/York Minster.jpg": "img/site/personal-cover.jpg"
   });
 
-  // Map all gallery folders to /public/img/ to preserve folder structure
-  eleventyConfig.addPassthroughCopy({ 
-    "src/images/galleries": "img" 
-  });
+  const galleriesLower = path.join(process.cwd(), "src/images/galleries");
+  const galleriesUpper = path.join(process.cwd(), "src/images/Galleries");
+  const galleriesDir = fs.existsSync(galleriesLower) ? galleriesLower : galleriesUpper;
+
+  if (fs.existsSync(galleriesDir)) {
+    fs.readdirSync(galleriesDir).forEach(folder => {
+      const folderPath = path.join(galleriesDir, folder);
+      if (fs.statSync(folderPath).isDirectory() && folder !== "siteimages") {
+        eleventyConfig.addPassthroughCopy({
+          [folderPath]: path.join("img", folder)
+        });
+      }
+    });
+  }
 
   // --- 2. IMAGE SHORTCODE ---
 

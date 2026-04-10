@@ -2,11 +2,16 @@ const fs = require("fs");
 const path = require("path");
 
 module.exports = function() {
-  const galleryDir = path.join(process.cwd(), "src/images/galleries");
-  const folders = fs.readdirSync(galleryDir).filter(f => {
-    const fullPath = path.join(galleryDir, f);
-    return fs.statSync(fullPath).isDirectory() && f !== "siteimages";
-  });
+  const galleriesLower = path.join(process.cwd(), "src/images/galleries");
+  const galleriesUpper = path.join(process.cwd(), "src/images/Galleries");
+  const galleryDir = fs.existsSync(galleriesLower) ? galleriesLower : galleriesUpper;
+
+  const folders = fs.existsSync(galleryDir)
+    ? fs.readdirSync(galleryDir).filter(f => {
+        const fullPath = path.join(galleryDir, f);
+        return fs.statSync(fullPath).isDirectory() && f !== "siteimages";
+      })
+    : [];
 
   const personalSlugs = ["londonunderground", "monopoly", "drone", "off-camera-flash", "drawings"];
   const displayNames = {
@@ -32,18 +37,18 @@ module.exports = function() {
     }
 
     return {
-  name: galleryName,
-  slug: slug,
-  images: allFiles.map(p => {
-    const fileName = path.basename(p, path.extname(p));
-    return {
-      path: path.join("src/images/galleries", folder, p),
-      // Only generate a title if it's one of your two specific galleries
-      title: (slug === "londonunderground" || slug === "monopoly") 
-             ? fileName.replace(/-/g, ' ').replace(/_/g, ' ') 
-             : null
-    };
-  }),
+      name: galleryName,
+      slug: slug,
+      images: allFiles.map(p => {
+        const fileName = path.basename(p, path.extname(p));
+        return {
+          path: path.join(galleryDir, folder, p),
+          // Only generate a title if it's one of your two specific galleries
+          title: (slug === "londonunderground" || slug === "monopoly") 
+                 ? fileName.replace(/-/g, ' ').replace(/_/g, ' ') 
+                 : null
+        };
+      }),
   cover: coverFile ? `/img/${folder}/${coverFile}`.replace(/\\/g, '/') : null,
   isPersonal: personalSlugs.includes(slug)
 };
