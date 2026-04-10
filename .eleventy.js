@@ -15,7 +15,7 @@ module.exports = function (eleventyConfig) {
 
   // Copy site images (logo, icons) to public/img/site/
   eleventyConfig.addPassthroughCopy({ 
-    "src/images/Galleries/siteimages": "img/site" 
+    "src/images/galleries/siteimages": "img/site" 
   });
   eleventyConfig.addPassthroughCopy({ 
     "src/images/York Minster.jpg": "img/site/personal-cover.jpg"
@@ -23,7 +23,7 @@ module.exports = function (eleventyConfig) {
 
   // Map all gallery folders to /public/img/ to preserve folder structure
   eleventyConfig.addPassthroughCopy({ 
-    "src/images/Galleries": "img" 
+    "src/images/galleries": "img" 
   });
 
   // --- 2. IMAGE SHORTCODE ---
