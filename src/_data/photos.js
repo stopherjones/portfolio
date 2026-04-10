@@ -26,12 +26,20 @@ module.exports = function() {
     }
 
     return {
-      name: folder,
-      slug: slug,
-      // Strictly map images from the local folder path to prevent stray files
-      images: allFiles.map(p => path.join("src/images/Galleries", folder, p)),
-      cover: coverFile ? `/img/${folder}/${coverFile}`.replace(/\\/g, '/') : null,
-      isPersonal: personalSlugs.includes(slug)
+  name: folder,
+  slug: slug,
+  images: allFiles.map(p => {
+    const fileName = path.basename(p, path.extname(p));
+    return {
+      path: path.join("src/images/Galleries", folder, p),
+      // Only generate a title if it's one of your two specific galleries
+      title: (slug === "londonunderground" || slug === "monopoly") 
+             ? fileName.replace(/-/g, ' ').replace(/_/g, ' ') 
+             : null
     };
+  }),
+  cover: coverFile ? `/img/${folder}/${coverFile}`.replace(/\\/g, '/') : null,
+  isPersonal: personalSlugs.includes(slug)
+};
   });
 };
