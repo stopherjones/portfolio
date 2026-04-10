@@ -13,7 +13,6 @@ permalink: "/{{ gallery.slug }}/index.html"
   <title>{{ gallery.name | capitalize }} | Photography Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/style.css">
-  
   <link rel="stylesheet" href="/assets/photoswipe/photoswipe.css">
 </head>
 <body>
@@ -21,30 +20,25 @@ permalink: "/{{ gallery.slug }}/index.html"
     {% include "navbar.njk" %}
 
   <main>
-    <div class="gallery" id="gallery-container">
-      {% for imgPath in gallery.images %}
-        {# This calls the async shortcode we defined in .eleventy.js #}
-        {% galleryImage imgPath, "Photo from " + gallery.name %}
-      {% endfor %}
-    </div>
-  </main>
+  <div class="gallery" id="gallery-container">
+  {% for imgPath in gallery.images %}
+    {# This prevents cover.jpg from appearing inside the gallery #}
+    {% if "cover" not in imgPath %}
+      {% galleryImage imgPath, "Photo from " + gallery.name %}
+    {% endif %}
+  {% endfor %}
+</div>
+</main>
 
-  <footer>
-    <p>&copy; 2026 | Built with 11ty</p>
-  </footer>
-
-  <script type="module">
-    import PhotoSwipeLightbox from '/assets/photoswipe/photoswipe-lightbox.esm.js';
-    
-    const lightbox = new PhotoSwipeLightbox({
-      gallery: '#gallery-container',
-      children: 'a',
-      // The module must be imported dynamically
-      pswpModule: () => import('/assets/photoswipe/photoswipe.esm.js')
-    });
-    
-    lightbox.init();
-  </script>
+<script type="module">
+  import PhotoSwipeLightbox from '/assets/photoswipe/photoswipe-lightbox.esm.js';
+  const lightbox = new PhotoSwipeLightbox({
+    gallery: '#gallery-container',
+    children: 'a', // This tells PhotoSwipe to navigate between all <a> tags found here 
+    pswpModule: () => import('/assets/photoswipe/photoswipe.esm.js')
+  });
+  lightbox.init(); // [cite: 5]
+</script>
 
   {% include "footer.njk" %}
 

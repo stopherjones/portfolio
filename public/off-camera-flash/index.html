@@ -6,7 +6,6 @@
   <title>Off camera flash | Photography Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/style.css">
-  
   <link rel="stylesheet" href="/assets/photoswipe/photoswipe.css">
 </head>
 <body>
@@ -96,10 +95,11 @@
 </nav>
 
   <main>
-    <div class="gallery" id="gallery-container">
-      
-        
-        <a href="/img/DSC02690-1600w.webp" 
+  <div class="gallery" id="gallery-container">
+  
+    
+    
+      <a href="/img/DSC02690-1600w.webp" 
                  class="gallery-item" 
                  data-pswp-width="1600" 
                  data-pswp-height="1066" 
@@ -109,9 +109,11 @@
                      loading="lazy" 
                      style="width:100%; height:100%; object-fit:cover;">
               </a>
-      
-        
-        <a href="/img/DSC02978-1600w.webp" 
+    
+  
+    
+    
+      <a href="/img/DSC02978-1600w.webp" 
                  class="gallery-item" 
                  data-pswp-width="1600" 
                  data-pswp-height="1001" 
@@ -121,9 +123,11 @@
                      loading="lazy" 
                      style="width:100%; height:100%; object-fit:cover;">
               </a>
-      
-        
-        <a href="/img/DSC03050-1600w.webp" 
+    
+  
+    
+    
+      <a href="/img/DSC03050-1600w.webp" 
                  class="gallery-item" 
                  data-pswp-width="1600" 
                  data-pswp-height="1067" 
@@ -133,9 +137,11 @@
                      loading="lazy" 
                      style="width:100%; height:100%; object-fit:cover;">
               </a>
-      
-        
-        <a href="/img/DSC03156-1600w.webp" 
+    
+  
+    
+    
+      <a href="/img/DSC03156-1600w.webp" 
                  class="gallery-item" 
                  data-pswp-width="1600" 
                  data-pswp-height="1066" 
@@ -145,9 +151,11 @@
                      loading="lazy" 
                      style="width:100%; height:100%; object-fit:cover;">
               </a>
-      
-        
-        <a href="/img/DSC05614-1600w.webp" 
+    
+  
+    
+    
+      <a href="/img/DSC05614-1600w.webp" 
                  class="gallery-item" 
                  data-pswp-width="1600" 
                  data-pswp-height="1066" 
@@ -157,26 +165,20 @@
                      loading="lazy" 
                      style="width:100%; height:100%; object-fit:cover;">
               </a>
-      
-    </div>
-  </main>
-
-  <footer>
-    <p>&copy; 2026 | Built with 11ty</p>
-  </footer>
-
-  <script type="module">
-    import PhotoSwipeLightbox from '/assets/photoswipe/photoswipe-lightbox.esm.js';
     
-    const lightbox = new PhotoSwipeLightbox({
-      gallery: '#gallery-container',
-      children: 'a',
-      // The module must be imported dynamically
-      pswpModule: () => import('/assets/photoswipe/photoswipe.esm.js')
-    });
-    
-    lightbox.init();
-  </script>
+  
+</div>
+</main>
+
+<script type="module">
+  import PhotoSwipeLightbox from '/assets/photoswipe/photoswipe-lightbox.esm.js';
+  const lightbox = new PhotoSwipeLightbox({
+    gallery: '#gallery-container',
+    children: 'a', // This tells PhotoSwipe to navigate between all <a> tags found here 
+    pswpModule: () => import('/assets/photoswipe/photoswipe.esm.js')
+  });
+  lightbox.init(); // [cite: 5]
+</script>
 
   <footer class="main-footer">
   <div class="footer-container">

@@ -14,11 +14,12 @@ module.exports = function() {
     const slug = folder.toLowerCase().replace(/\s+/g, '-');
     const folderPath = path.join(galleryDir, folder);
     
+    // Get all valid images and sort them alphabetically
     const allFiles = fs.readdirSync(folderPath)
       .filter(file => file.match(/\.(jpg|jpeg|png|webp|JPG|JPEG)$/i))
       .sort(); 
 
-    // Find cover.jpg or fallback to the first image
+    // Find cover.jpg specifically for thumbnails
     let coverFile = allFiles.find(file => file.toLowerCase().startsWith('cover'));
     if (!coverFile && allFiles.length > 0) {
       coverFile = allFiles[0];
@@ -27,8 +28,8 @@ module.exports = function() {
     return {
       name: folder,
       slug: slug,
+      // Strictly map images from the local folder path to prevent stray files
       images: allFiles.map(p => path.join("src/images/Galleries", folder, p)),
-      // Path now looks like /img/Arts/cover.jpg
       cover: coverFile ? `/img/${folder}/${coverFile}`.replace(/\\/g, '/') : null,
       isPersonal: personalSlugs.includes(slug)
     };

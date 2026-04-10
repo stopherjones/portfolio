@@ -5,24 +5,23 @@ module.exports = function (eleventyConfig) {
   
   // --- 1. ASSET MANAGEMENT ---
   
- // 1. Copy CSS and custom JS
-eleventyConfig.addPassthroughCopy("src/assets");
+  // Copy CSS and custom JS
+  eleventyConfig.addPassthroughCopy("src/assets");
 
-// 2. Copy PhotoSwipe files from node_modules
-eleventyConfig.addPassthroughCopy({ 
-  "node_modules/photoswipe/dist": "assets/photoswipe" 
-});
+  // Copy PhotoSwipe files from node_modules
+  eleventyConfig.addPassthroughCopy({ 
+    "node_modules/photoswipe/dist": "assets/photoswipe" 
+  });
 
-// 3. Copy site images (logo, icons) to public/img/site/
-eleventyConfig.addPassthroughCopy({ 
-  "src/images/Galleries/siteimages": "img/site" 
-});
+  // Copy site images (logo, icons) to public/img/site/
+  eleventyConfig.addPassthroughCopy({ 
+    "src/images/Galleries/siteimages": "img/site" 
+  });
 
-// 4. THE CRITICAL ADDITION: Map all gallery folders to /public/img/
-// This ensures /src/images/Galleries/Arts/cover.jpg -> /public/img/Arts/cover.jpg
-eleventyConfig.addPassthroughCopy({ 
-  "src/images/Galleries": "img" 
-});
+  // Map all gallery folders to /public/img/ to preserve folder structure
+  eleventyConfig.addPassthroughCopy({ 
+    "src/images/Galleries": "img" 
+  });
 
   // --- 2. IMAGE SHORTCODE ---
 
@@ -36,7 +35,6 @@ eleventyConfig.addPassthroughCopy({
         filenameFormat: function (id, src, width, format) {
           const extension = path.extname(src);
           const name = path.basename(src, extension);
-          // Standardize filenames to avoid issues with special characters
           return `${name}-${width}w.${format}`;
         }
       });
@@ -50,10 +48,12 @@ eleventyConfig.addPassthroughCopy({
       let highres = metadata.webp[1] || metadata.webp[0]; 
       let aspectRatio = (lowres.width / lowres.height).toFixed(4);
 
+      // The <a> tag acts as the PhotoSwipe trigger. 
+      // It must contain the href to the high-res image and dimensions.
       return `<a href="${highres.url}" 
-                 class="gallery-item" 
                  data-pswp-width="${highres.width}" 
                  data-pswp-height="${highres.height}" 
+                 target="_blank"
                  style="flex-grow: ${aspectRatio}; flex-basis: ${aspectRatio * 200}px">
                 <img src="${lowres.url}" 
                      alt="${alt}" 
@@ -72,7 +72,7 @@ eleventyConfig.addPassthroughCopy({
     dir: {
       input: "src",
       output: "public",
-      includes: "_includes", // CRITICAL: This allows {% include "navbar.njk" %} to work
+      includes: "_includes",
       data: "_data"
     },
     markdownTemplateEngine: "njk",

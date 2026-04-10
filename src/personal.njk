@@ -16,16 +16,25 @@ permalink: "/personal-projects/index.html"
     {% include "navbar.njk" %}
 
   <main>
-    <div class="gallery-list">
-      {% for gallery in photos %}
-        {% if gallery.isPersonal %}
-          <a href="/{{ gallery.slug }}/" class="gallery-card">
-            <h2>{{ gallery.name | capitalize }}</h2>
-          </a>
-        {% endif %}
-      {% endfor %}
-    </div>
-  </main>
+  <div class="gallery-grid"> {# Use 'gallery-grid' here #}
+    {% for gallery in photos %}
+      {% if gallery.isPersonal %}
+        <a href="/{{ gallery.slug }}/" class="gallery-card">
+          <div class="card-image">
+            {% if gallery.cover %}
+              <img src="{{ gallery.cover }}" alt="{{ gallery.name }} Cover">
+            {% else %}
+              <div class="placeholder-bg" style="background: #333; height: 100%;"></div>
+            {% endif %}
+          </div>
+          <div class="card-overlay">
+            <h2>{{ gallery.name }}</h2>
+          </div>
+        </a>
+      {% endif %}
+    {% endfor %}
+  </div>
+</main>
 
   {% include "footer.njk" %}
   
