@@ -22,7 +22,7 @@ permalink: "/personal-projects/index.html"
         <a href="{{ pathPrefix }}/{{ gallery.slug }}/" class="gallery-card">
           <div class="card-image">
             {% if gallery.cover %}
-              <img src="{{ pathPrefix }}/{{ gallery.cover }}" alt="{{ gallery.name }} Cover">
+              {% coverImage gallery.cover, gallery.name + ' Cover', 480 %}
             {% else %}
               <div class="placeholder-bg" style="background: #333; height: 100%;"></div>
             {% endif %}

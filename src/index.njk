@@ -23,7 +23,7 @@ title: My Photography Portfolio
           <a href="{{ pathPrefix }}/{{ gallery.slug }}/" class="gallery-card">
             <div class="card-image">
               {% if gallery.cover %}
-                <img src="{{ pathPrefix }}/{{ gallery.cover }}" alt="{{ gallery.name }} Cover">
+                {% coverImage gallery.cover, gallery.name + ' Cover', 480 %}
               {% else %}
                 <div class="placeholder-bg"></div>
               {% endif %}

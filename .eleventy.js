@@ -88,6 +88,38 @@ module.exports = function (eleventyConfig) {
     }
   });
 
+  eleventyConfig.addNunjucksAsyncShortcode("coverImage", async function (src, alt, width = 480) {
+    if (src && typeof src !== "string" && src.path) {
+      src = src.path;
+    }
+
+    try {
+      let metadata = await Image(src, {
+        widths: [width],
+        formats: ["webp", "jpeg"],
+        outputDir: "./public/img/",
+        urlPath: imageUrlPath,
+        filenameFormat: function (id, src, width, format) {
+          const extension = path.extname(src);
+          const name = path.basename(src, extension);
+          return `${name}-${width}w.${format}`;
+        }
+      });
+
+      const webp = metadata.webp && metadata.webp[0];
+      const jpeg = metadata.jpeg && metadata.jpeg[0];
+      const imgUrl = jpeg ? jpeg.url : webp.url;
+
+      return `<picture>
+                ${webp ? `<source type="image/webp" srcset="${webp.url}">` : ""}
+                <img src="${imgUrl}" alt="${alt}" loading="lazy" style="width:100%; height:100%; object-fit:cover;">
+              </picture>`;
+    } catch (e) {
+      console.error(`❌ Failed to process cover image [${src}]:`, e.message);
+      return `<img src="${src}" alt="${alt}" loading="lazy" style="width:100%; height:100%; object-fit:cover;">`;
+    }
+  });
+
   // --- 3. CONFIGURATION ---
 
   return {
