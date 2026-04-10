@@ -26,6 +26,10 @@ module.exports = function (eleventyConfig) {
   // --- 2. IMAGE SHORTCODE ---
 
   eleventyConfig.addNunjucksAsyncShortcode("galleryImage", async function (src, alt) {
+    if (src && typeof src !== "string" && src.path) {
+      src = src.path;
+    }
+
     try {
       let metadata = await Image(src, {
         widths: [600, 1600],

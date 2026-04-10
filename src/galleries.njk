@@ -21,10 +21,10 @@ permalink: "/{{ gallery.slug }}/index.html"
 
   <main>
   <div class="gallery" id="gallery-container">
-  {% for imgPath in gallery.images %}
+  {% for image in gallery.images %}
     {# This prevents cover.jpg from appearing inside the gallery #}
-    {% if "cover" not in imgPath %}
-      {% galleryImage imgPath, "Photo from " + gallery.name %}
+    {% if "cover" not in image.path %}
+      {% galleryImage image.path, image.title or "Photo from " + gallery.name %}
     {% endif %}
   {% endfor %}
 </div>
