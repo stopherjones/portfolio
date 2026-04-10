@@ -147,6 +147,7 @@ h1, h2 {
   color: #f9f8f5;
   font-size: 2rem;
   margin: 0;
+  text-align: center;
 }
 
 /* --- INDIVIDUAL GALLERY (Justified Grid) --- */

@@ -9,9 +9,15 @@ module.exports = function() {
   });
 
   const personalSlugs = ["londonunderground", "monopoly", "drone", "off-camera-flash", "drawings"];
+  const displayNames = {
+    LondonUnderground: "London Underground",
+    Monopoly: "London Monopoly"
+  };
+  const personalOrder = ["londonunderground", "monopoly", "drone", "off-camera-flash", "drawings"];
 
   return folders.map(folder => {
     const slug = folder.toLowerCase().replace(/\s+/g, '-');
+    const galleryName = displayNames[folder] || folder.replace(/([a-z])([A-Z])/g, '$1 $2');
     const folderPath = path.join(galleryDir, folder);
     
     // Get all valid images and sort them alphabetically
@@ -26,7 +32,7 @@ module.exports = function() {
     }
 
     return {
-  name: folder,
+  name: galleryName,
   slug: slug,
   images: allFiles.map(p => {
     const fileName = path.basename(p, path.extname(p));
@@ -41,5 +47,10 @@ module.exports = function() {
   cover: coverFile ? `/img/${folder}/${coverFile}`.replace(/\\/g, '/') : null,
   isPersonal: personalSlugs.includes(slug)
 };
+  }).sort((a, b) => {
+    if (a.isPersonal && b.isPersonal) {
+      return personalOrder.indexOf(a.slug) - personalOrder.indexOf(b.slug);
+    }
+    return 0;
   });
 };

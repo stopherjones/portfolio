@@ -17,6 +17,9 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ 
     "src/images/Galleries/siteimages": "img/site" 
   });
+  eleventyConfig.addPassthroughCopy({ 
+    "src/images/York Minster.jpg": "img/site/personal-cover.jpg"
+  });
 
   // Map all gallery folders to /public/img/ to preserve folder structure
   eleventyConfig.addPassthroughCopy({ 
