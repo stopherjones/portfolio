@@ -81,12 +81,12 @@ h1, h2 {
   color: #f9f8f5;
   text-decoration: none;
   padding: 5px 0;
-  font-size: 0.9rem;
+  font-size: 1.2rem;
 }
 
 .menu-label {
   display: block;
-  font-size: 0.7rem;
+  font-size: 1.2rem;
   color: #a4a2a0;
   text-transform: uppercase;
   margin: 10px 0 5px 0;
@@ -151,6 +151,21 @@ h1, h2 {
 }
 
 /* --- INDIVIDUAL GALLERY (Justified Grid) --- */
+.gallery-intro {
+  max-width: 1200px;
+  margin: 0 auto 32px;
+  padding: 0 20px;
+}
+.gallery-intro h1 {
+  font-size: 2.2rem;
+  margin-bottom: 0.6rem;
+}
+.gallery-intro p {
+  font-size: 1.3rem;
+  line-height: 1.75;
+  margin-bottom: 1rem;
+  max-width: 60em;
+}
 .gallery {
   display: flex;
   flex-wrap: wrap;

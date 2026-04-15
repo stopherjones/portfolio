@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const galleryIntro = require("./galleryIntro");
 
 module.exports = function() {
   const galleriesLower = path.join(process.cwd(), "src/images/galleries");
@@ -39,6 +40,7 @@ module.exports = function() {
     return {
       name: galleryName,
       slug: slug,
+      intro: galleryIntro[slug] || null,
       images: allFiles.map(p => {
         const fileName = path.basename(p, path.extname(p));
         return {

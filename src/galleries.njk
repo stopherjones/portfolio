@@ -20,6 +20,15 @@ permalink: "/{{ gallery.slug }}/index.html"
     {% include "navbar.njk" %}
 
   <main>
+    {% if gallery.intro %}
+      <section class="gallery-intro">
+        <h1>{{ gallery.intro.title }}</h1>
+        {% for paragraph in gallery.intro.paragraphs %}
+          <p>{{ paragraph }}</p>
+        {% endfor %}
+      </section>
+    {% endif %}
+
   <div class="gallery" id="gallery-container">
   {% for image in gallery.images %}
     {# This prevents cover.jpg from appearing inside the gallery #}
