@@ -178,6 +178,9 @@ h1, h2 {
 }
 
 .gallery-item {
+  position: relative;
+  display: block;
+  overflow: hidden;
   height: 300px; /* Fixed height for uniformity */
   flex-grow: 0;  /* IMPORTANT: Stops images from stretching */
   
@@ -186,10 +189,53 @@ h1, h2 {
   flex-basis: calc(25% - 6px); 
 }
 
+.gallery-item__thumb {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
 .gallery-item img {
   width: 100%;
   height: 100%;
   object-fit: cover; /* Maintains aspect ratio by cropping */
+}
+
+.gallery-item__label {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 8px 10px;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+.pswp-title-banner {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: 16%;
+  z-index: 100001;
+  pointer-events: none;
+  color: #fff;
+  background: rgba(20, 20, 20, 0.78);
+  padding: 10px 14px;
+  font-size: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+
+.pswp.pswp--open .pswp-title-banner {
+  opacity: 1;
 }
 
 /* Optional: Handle the last row so it doesn't stretch */
