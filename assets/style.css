@@ -166,22 +166,36 @@ h1, h2 {
   margin-bottom: 1rem;
   max-width: 60em;
 }
+
+/* --- INDIVIDUAL GALLERY (Justified Grid) --- */
 .gallery {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   padding: 20px;
+  max-width: 1200px; /* Constrain to your site width */
+  margin: 0 auto;
 }
 
 .gallery-item {
-  height: 300px;
-  flex-grow: 1;
+  height: 300px; /* Fixed height for uniformity */
+  flex-grow: 0;  /* IMPORTANT: Stops images from stretching */
+  
+  /* Calculation: (100% / number-of-items) - (gap-size * (items-minus-1 / items)) */
+  /* For 4 items per row with 8px gap: */
+  flex-basis: calc(25% - 6px); 
 }
 
 .gallery-item img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; /* Maintains aspect ratio by cropping */
+}
+
+/* Optional: Handle the last row so it doesn't stretch */
+.gallery::after {
+  content: "";
+  flex: auto;
 }
 
 /* --- FOOTER --- */
