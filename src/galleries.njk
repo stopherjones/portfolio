@@ -30,7 +30,7 @@ permalink: "/{{ gallery.slug }}/index.html"
     {% endif %}
 
   <div class="gallery" id="gallery-container">
-  {% set titleGalleries = ["londonunderground", "monopoly"] %}
+  {% set titleGalleries = ["londonunderground", "monopoly", "flags"] %}
   {% for image in gallery.images %}
     {# This prevents cover.jpg from appearing inside the gallery #}
     {% if "cover" not in image.path %}

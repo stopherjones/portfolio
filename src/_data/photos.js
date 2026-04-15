@@ -14,12 +14,12 @@ module.exports = function() {
       })
     : [];
 
-  const personalSlugs = ["londonunderground", "monopoly", "drone", "off-camera-flash", "drawings"];
+  const personalSlugs = ["londonunderground", "monopoly", "drone", "off-camera-flash", "flags", "drawings"];
   const displayNames = {
     LondonUnderground: "London Underground",
     Monopoly: "London Monopoly"
   };
-  const personalOrder = ["londonunderground", "monopoly", "drone", "off-camera-flash", "drawings"];
+  const personalOrder = ["londonunderground", "monopoly", "drone", "off-camera-flash", "flags", "drawings"];
 
   return folders.map(folder => {
     const slug = folder.toLowerCase().replace(/\s+/g, '-');
@@ -46,8 +46,8 @@ module.exports = function() {
         return {
           path: path.join(galleryDir, folder, p),
           // Only generate a title if it's one of your two specific galleries
-          title: (slug === "londonunderground" || slug === "monopoly") 
-                 ? fileName.replace(/-/g, ' ').replace(/_/g, ' ') 
+          title: (slug === "londonunderground" || slug === "monopoly" || slug === "flags") 
+                 ? fileName.replace(/_/g, ' ') 
                  : null
         };
       }),

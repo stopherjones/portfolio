@@ -36,6 +36,13 @@ module.exports = {
       "Click on any image to view it in full size, and to navigate between images."
     ]
   },
+  flags: {
+    title: "Flags",
+    paragraphs: [
+      "Double-exposure style images of places I've been and photos I think capture the essence of those locations.",
+      "Click on any image to view it in full size, and to navigate between images."
+    ]
+  },
   monopoly: {
     title: "London Monopoly",
     paragraphs: [
