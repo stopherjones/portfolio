@@ -48,6 +48,20 @@ module.exports = function (eleventyConfig) {
       src = src.path;
     }
 
+    const escapeHtml = value => String(value || "").replace(/[&<>"']/g, char => {
+      return {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+      }[char];
+    });
+
+    const titleText = typeof alt === "string" && alt.startsWith("Photo from ") ? "" : alt;
+    const galleryTitleAttr = titleText ? `data-gallery-title="${escapeHtml(titleText)}"` : "";
+    const titleOverlay = titleText ? `<span class="gallery-item__label">${escapeHtml(titleText)}</span>` : "";
+
     try {
       let metadata = await Image(src, {
         widths: [600, 1600],
@@ -68,19 +82,22 @@ module.exports = function (eleventyConfig) {
 
       let lowres = metadata.webp[0];
       let highres = metadata.webp[1] || metadata.webp[0]; 
-      let aspectRatio = (lowres.width / lowres.height).toFixed(4);
+      let aspectRatio = Number((lowres.width / lowres.height).toFixed(4));
 
       // The <a> tag acts as the PhotoSwipe trigger. 
       // It must contain the href to the high-res image and dimensions.
-      return `<a href="${highres.url}" 
+      return `<a class="gallery-item" ${galleryTitleAttr} href="${highres.url}" 
                  data-pswp-width="${highres.width}" 
                  data-pswp-height="${highres.height}" 
                  target="_blank"
                  style="flex-grow: ${aspectRatio}; flex-basis: ${aspectRatio * 200}px">
-                <img src="${lowres.url}" 
-                     alt="${alt}" 
-                     loading="lazy" 
-                     style="width:100%; height:100%; object-fit:cover;">
+                <div class="gallery-item__thumb">
+                  <img src="${lowres.url}" 
+                       alt="${escapeHtml(alt)}" 
+                       loading="lazy" 
+                       style="width:100%; height:100%; object-fit:cover;">
+                  ${titleOverlay}
+                </div>
               </a>`;
     } catch (e) {
       console.error(`❌ Failed to process image [${src}]:`, e.message);
