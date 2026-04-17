@@ -92,6 +92,59 @@ h1, h2 {
   margin: 10px 0 5px 0;
 }
 
+/* --- HERO SECTION --- */
+.hero-container {
+  max-width: 1200px; /* Matches .nav-container and .gallery-grid */
+  margin: 0 auto;    /* Centers the hero on the page */
+  padding: 0 20px;   /* Matches the side padding of your nav */
+  box-sizing: border-box;
+}
+
+.hero-header {
+  position: relative;
+  width: 100%;
+  height: 75vh;      /* 75% of viewport height */
+  overflow: hidden;
+  margin-top: 20px;  /* Space below the nav */
+  margin-bottom: 20px;
+}
+
+.hero-header img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-overlay h1 {
+  color: #f9f8f5;
+  font-size: 3rem;
+  text-align: center;
+  margin: 0;
+}
+
+/* --- MOBILE HERO --- */
+@media (max-width: 600px) {
+  .hero-container {
+    padding: 0 10px; /* Slightly tighter padding on small screens */
+  }
+  .hero-header {
+    height: 35vh;
+  }
+  .hero-overlay h1 {
+    font-size: 1.8rem;
+  }
+}
+
 /* --- GALLERY COVER GRID (Home/Personal) --- */
 .gallery-grid {
   display: grid;
@@ -322,7 +375,24 @@ h1, h2 {
 .back-home:hover { border-color: #f9f8f5; }
 
 /* --- RESPONSIVE --- */
+/* --- RESPONSIVE --- */
 @media (max-width: 600px) {
-  .gallery-grid { grid-template-columns: 1fr; }
-  .gallery-item { flex-basis: 100%; height: auto; }
+  .gallery-grid { 
+    grid-template-columns: 1fr; 
+  }
+
+  /* Force gallery items to fill width on mobile */
+  .gallery-item { 
+    flex-basis: 100% !important; /* Overrides the inline style from JS */
+    height: auto !important;      /* Allows the container to grow with the image */
+    margin-bottom: 8px;           /* Adds vertical spacing between stacked images */
+  }
+
+  /* Ensure the thumbnail/image fills that new width */
+  .gallery-item__thumb, 
+  .gallery-item img {
+    width: 100% !important;
+    height: auto !important;      /* Prevents cropping/distortion on mobile */
+    object-fit: contain;          /* Ensures the whole portrait photo is visible */
+  }
 }

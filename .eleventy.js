@@ -23,7 +23,7 @@ module.exports = function (eleventyConfig) {
     "src/images/galleries/siteimages": "img/site" 
   });
   eleventyConfig.addPassthroughCopy({ 
-    "src/images/York Minster.jpg": "img/site/personal-cover.jpg"
+    "src/images/York-Minster.jpg": "img/site/personal-cover.jpg"
   });
 
   const galleriesLower = path.join(process.cwd(), "src/images/galleries");

@@ -1,5 +1,5 @@
 ---
-title: My Photography Portfolio
+title: Christopher Jones Photography
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -15,6 +15,17 @@ title: My Photography Portfolio
   {% include "navbar.njk" %}
 
   <main>
+
+  <div class="hero-container">
+    <section class="hero-header">
+      {# Using 1200 to match your max-width exactly #}
+      {% coverImage "src/images/York-Minster.jpg", "York Minster Hero", 1200 %}
+      <div class="hero-overlay">
+        <h1>{{ title }}</h1>
+      </div>
+    </section>
+  </div>
+
     <div class="gallery-grid"> {# Changed class to 'gallery-grid' to match the CSS #}
       
       {# 1. Show only the non-personal galleries #}
